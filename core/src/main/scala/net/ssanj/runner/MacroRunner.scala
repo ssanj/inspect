@@ -1,10 +1,10 @@
-package net.ssanj.inspect
-
-import ShowTMacros._
+package net.ssanj.runner
 
 import monix.execution.Scheduler.Implicits.global
 import monix.reactive._
 import concurrent.duration._
+
+import net.ssanj.inspect._
 
 object MacroRunner {
   def main(args: Array[String]): Unit = {
@@ -16,7 +16,7 @@ object MacroRunner {
       // We then make it emit the same element twice
       .flatMap(x => Observable(x, x)))
       // This stream would be infinite, so we limit it to 10 items
-      .take(10)
+      .take(11)
 
     val cancelable = showA(source
       // On consuming it, we want to dump the contents to stdout

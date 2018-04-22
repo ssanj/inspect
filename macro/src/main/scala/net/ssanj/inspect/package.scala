@@ -1,49 +1,49 @@
-package net.ssanj.inspect
+package net.ssanj
 
 import scala.reflect.macros.blackbox.Context
 import scala.language.experimental.macros
+import scala.io.AnsiColor._
 
-object ShowTMacros {
+object inspect {
 
-  //zen.t
   def showT[A](value: A): A = macro showTMacro[A]
 
-//zen.x
   def explain[A](value: A): A = macro explainMacro[A]
 
-//zen.ast
   def showA[A](value: A): A = macro showAMacro[A]
 
-//zen.info
   def inspect[A](value: A): A = macro inspectMacro[A]
 
   def showTMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
-    import c.universe._
     val tree = c.typecheck(value.tree)
-    println(s"type: ${tree.tpe}")
+    console("type", tree.tpe.toString )
     value
   }
 
   def inspectMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     import c.universe._
 
-    println(s"code: ${showCode(value.tree)}")
-    println(s"ast: ${showRaw(value.tree)}")
+    console("code", showCode(value.tree))
+    console("ast", showRaw(value.tree))
     val tree = c.typecheck(value.tree)
-    println(s"type: ${tree.tpe}")
+    console("type", tree.tpe.toString)
     value
   }
 
   def showAMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     import c.universe._
 
-    println(s"ast: ${showRaw(value.tree)}")
+    console("ast", showRaw(value.tree))
     value
   }
 
   def explainMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     import c.universe._
-    println(s"code: ${showCode(value.tree)}")
+    console("code", showCode(value.tree))
     value
+  }
+
+  private def console(prefix: String, value: String): Unit = {
+    println(s"${GREEN}${prefix}${RESET}: ${value}")
   }
 }

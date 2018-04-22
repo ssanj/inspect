@@ -1,6 +1,7 @@
 lazy val commonSettings = Seq(
-  scalaVersion := "2.12.4",
-  organization := "net.ssanj.inspect",
+  scalaVersion := "2.12.5",
+  organization := "net.ssanj",
+  version := "1.1.0",
   scalacOptions ++= Seq(
                         "-deprecation",
                         "-feature",
@@ -13,16 +14,18 @@ lazy val commonSettings = Seq(
 lazy val scalaReflect = Def.setting { "org.scala-lang" % "scala-reflect" % scalaVersion.value }
 
 lazy val core = (project in file("core"))
-  .dependsOn(macroSub)
+  .dependsOn(inspect)
   .settings(
     commonSettings,
     libraryDependencies ++= Seq(
       "io.monix" %% "monix" % "3.0.0-RC1"
-    )
+    ),
+    publish := {},
+    publishLocal := {}
     // other settings here
   )
 
-lazy val macroSub = (project in file("macro"))
+lazy val inspect = (project in file("macro"))
   .settings(
     commonSettings,
     libraryDependencies ++= Seq(
