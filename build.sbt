@@ -14,7 +14,7 @@ lazy val commonSettings = Seq(
 lazy val scalaReflect = Def.setting { "org.scala-lang" % "scala-reflect" % scalaVersion.value }
 
 lazy val core = (project in file("core"))
-  .dependsOn(inspect)
+  .dependsOn(zen)
   .settings(
     commonSettings,
     libraryDependencies ++= Seq(
@@ -24,7 +24,7 @@ lazy val core = (project in file("core"))
     publishLocal := {}
   )
 
-lazy val inspect = (project in file("macro"))
+lazy val zen = (project in file("macro"))
   .settings(
     commonSettings,
     libraryDependencies ++= Seq(
