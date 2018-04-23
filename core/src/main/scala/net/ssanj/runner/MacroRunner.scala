@@ -16,7 +16,7 @@ object MacroRunner {
       // We then make it emit the same element twice
       .flatMap(x => Observable(x, x)))
       // This stream would be infinite, so we limit it to 10 items
-      .take(11)
+      . take(11)
 
     val cancelable = showA(source
       // On consuming it, we want to dump the contents to stdout
@@ -34,6 +34,26 @@ object MacroRunner {
         two <- Option(2)
         if (one > 5)
       } yield (one + two))
+
+
+    explain{ val (even, odd) = List(1,2,3,4).partition(_ % 2 == 0) }
+
+    explain{ val x = List(1,2,3,4).partition(_ % 2 == 0) }
+
+    explain { Option(1) match {
+        case Some(x) if x == 1 => true
+      }
+    }
+
+    explain { Option(1) match {
+        case Some(x) => true
+        case None => false
+      }
+    }
+
+    explainMacro {
+      case class Person(name: String, age: Int)
+    }
 
   }
 }
