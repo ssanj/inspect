@@ -97,6 +97,6 @@ libraryDependencies += "net.ssanj" %% "zen" %% "2.0.0"
 To publish a new version perform the following tasks:
 
 ```
-publish
-bintrayRelease
+zen/publish
+zen/bintrayRelease
 ```

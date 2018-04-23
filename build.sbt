@@ -27,6 +27,7 @@ lazy val core = (project in file("core"))
 lazy val zen = (project in file("macro"))
   .settings(
     commonSettings,
+    licenses ++= Seq(("MIT", url("http://opensource.org/licenses/MIT"))),
     libraryDependencies ++= Seq(
     scalaReflect.value,
     "org.scalatest"  %% "scalatest"   % "3.0.1"  % "test"
