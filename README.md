@@ -2,7 +2,7 @@
 
 ![The master computer from the Liberator](/zen.jpg)
 
-Zen is a Scala Macro that provides some additional type information when you need it. It's inspired by [macrocosm](https://github.com/retronym/macrocosm).
+Zen is a Scala Macro that provides some additional type information when you need it. Zen is inspired by [macrocosm](https://github.com/retronym/macrocosm) and [Blakes 7](https://en.wikipedia.org/wiki/Characters_of_Blake%27s_7#Zen).
 
 ## Showing the type of an Expression
 
