@@ -32,9 +32,11 @@ object MacroRunner {
       }
     }
 
-    Observable.range(0, 4).dump("O")
+    zen.explain(Observable.range(0, 4).dump("O")
       .consumeWith(Consumer.complete)
       .runAsync
-      .foreach(x => { zen.t("x", x); println("Consumer completed") })
+      .foreach(x => { zen.t("x", x); println("Consumer completed") }))
   }
+
+  zen.inspect { Right(1) }
 }
