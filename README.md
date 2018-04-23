@@ -1,8 +1,8 @@
-# Zen
-
 ![The master computer from the Liberator](/zen.jpg)
 
-Zen is a Scala Macro that provides some additional type information when you need it. Zen is inspired by [macrocosm](https://github.com/retronym/macrocosm) and [Blakes 7](https://en.wikipedia.org/wiki/Characters_of_Blake%27s_7#Zen).
+Zen is a Scala Macro that provides some additional type information when you need it.
+
+Zen is inspired by [macrocosm](https://github.com/retronym/macrocosm) and [Blakes 7](https://en.wikipedia.org/wiki/Characters_of_Blake%27s_7#Zen).
 
 ## Showing the type of an Expression
 
@@ -80,6 +80,17 @@ type: monix.reactive.Observable[Long]
 
 ## Installation
 
+### Bintray
+
+Add the following to your `build.sbt`:
+
+```{.scala .scrollx}
+libraryDependencies += "net.ssanj" %% "zen" % "2.0.0"
+```
+
+
+### Local
+
 Clone this repo and install it locally with:
 
 ```{.scala .scrollx}
@@ -89,7 +100,7 @@ sbt publishLocal
 You can then include it in any SBT project as per usual:
 
 ```{.scala .scrollx}
-libraryDependencies += "net.ssanj" %% "zen" %% "2.0.0"
+libraryDependencies += "net.ssanj" %% "zen" % "2.0.0"
 ```
 
 ## Publishing
