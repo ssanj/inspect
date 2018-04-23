@@ -8,11 +8,12 @@ object MacroRunner {
   def main(args: Array[String]): Unit = {
     zen.t(List(1,2,3,4))
     zen.t(List(1,2,3,4).map(_.toString).mkString)
+    zen.t("pair", { 1 -> "one" })
 
     val source = zen.inspect(Observable.interval(1.second)
       .filter(_ % 2 == 0)
       .flatMap(x => Observable(x, x)))
-      . take(11)
+      . take(10)
 
     val cancelable = zen.ast(source
       .dump("O"))
