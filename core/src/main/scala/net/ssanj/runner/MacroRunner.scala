@@ -51,11 +51,13 @@ object MacroRunner {
       }
     }
 
+    inspect {
+      List(1,2,3,4).map(x => if (x % 3 != 0) Option(x) else None).collect { case Some(x) =>  x}
+    }
 
     Observable.range(0, 4).dump("O")
       .consumeWith(Consumer.complete)
       .runAsync
       .foreach(x => { showTN("x", x); println("Consumer completed") })
-
   }
 }
