@@ -51,9 +51,11 @@ object MacroRunner {
       }
     }
 
-    explainMacro {
-      case class Person(name: String, age: Int)
-    }
+
+    Observable.range(0, 4).dump("O")
+      .consumeWith(Consumer.complete)
+      .runAsync
+      .foreach(x => { showTN("x", x); println("Consumer completed") })
 
   }
 }

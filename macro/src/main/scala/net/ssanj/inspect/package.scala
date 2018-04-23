@@ -8,6 +8,8 @@ object inspect {
 
   def showT[A](value: A): A = macro showTMacro[A]
 
+  def showTN[A](name: String, value: A): A = macro showTNMacro[A]
+
   def explain[A](value: A): A = macro explainMacro[A]
 
   def showA[A](value: A): A = macro showAMacro[A]
@@ -17,6 +19,16 @@ object inspect {
   def showTMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     val tree = c.typecheck(value.tree)
     console("type", tree.tpe.toString )
+    value
+  }
+
+  def showTNMacro[A: c.WeakTypeTag](c: Context)(name: c.Expr[String], value: c.Expr[A]): c.Expr[A] = {
+    import c.universe._
+    val tree = c.typecheck(value.tree)
+    name.tree match {
+      case q"""$n""" => console(s"[${n}] - type", tree.tpe.toString )
+    }
+
     value
   }
 
