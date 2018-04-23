@@ -78,7 +78,7 @@ ast: Apply(TypeApply(Select(Apply(Select(Apply(Select(Select(Select(Ident(monix)
 type: monix.reactive.Observable[Long]
 ```
 
-# Installation
+## Installation
 
 Clone this repo and install it locally with:
 
@@ -90,4 +90,13 @@ You can then include it in any SBT project as per usual:
 
 ```{.scala .scrollx}
 libraryDependencies += "net.ssanj" %% "zen" %% "2.0.0"
+```
+
+## Publishing
+
+To publish a new version perform the following tasks:
+
+```
+publish
+bintrayRelease
 ```
