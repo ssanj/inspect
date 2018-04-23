@@ -22,7 +22,6 @@ lazy val core = (project in file("core"))
     ),
     publish := {},
     publishLocal := {}
-    // other settings here
   )
 
 lazy val inspect = (project in file("macro"))
@@ -30,7 +29,6 @@ lazy val inspect = (project in file("macro"))
     commonSettings,
     libraryDependencies ++= Seq(
     scalaReflect.value,
-    "org.scalatest"  %% "scalatest"   % "3.0.1"  % "test",
-    "org.scalacheck" %% "scalacheck"  % "1.13.5" % "test"
+    "org.scalatest"  %% "scalatest"   % "3.0.1"  % "test"
   )
 )
