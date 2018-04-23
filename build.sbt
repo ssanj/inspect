@@ -1,7 +1,7 @@
 lazy val commonSettings = Seq(
   scalaVersion := "2.12.5",
   organization := "net.ssanj",
-  version := "1.1.0",
+  version := "2.0.0",
   scalacOptions ++= Seq(
                         "-deprecation",
                         "-feature",
@@ -14,7 +14,7 @@ lazy val commonSettings = Seq(
 lazy val scalaReflect = Def.setting { "org.scala-lang" % "scala-reflect" % scalaVersion.value }
 
 lazy val core = (project in file("core"))
-  .dependsOn(inspect)
+  .dependsOn(zen)
   .settings(
     commonSettings,
     libraryDependencies ++= Seq(
@@ -22,15 +22,13 @@ lazy val core = (project in file("core"))
     ),
     publish := {},
     publishLocal := {}
-    // other settings here
   )
 
-lazy val inspect = (project in file("macro"))
+lazy val zen = (project in file("macro"))
   .settings(
     commonSettings,
     libraryDependencies ++= Seq(
     scalaReflect.value,
-    "org.scalatest"  %% "scalatest"   % "3.0.1"  % "test",
-    "org.scalacheck" %% "scalacheck"  % "1.13.5" % "test"
+    "org.scalatest"  %% "scalatest"   % "3.0.1"  % "test"
   )
 )
