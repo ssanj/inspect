@@ -52,5 +52,5 @@ object MacroRunner {
 
   val p1 = Person("mr", Name("Bob"), Age(31), Address(Street(No(10), StreetName("Midtown"))))
 
-  zen.unwrap(p1)
+  zen.structure(p1)
 }

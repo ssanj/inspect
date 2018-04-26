@@ -1,14 +1,9 @@
 import scala.reflect.macros.blackbox.Context
 import scala.language.experimental.macros
 import scala.io.AnsiColor._
+import zen.Console._
 
 package object zen {
-
-  sealed trait MacroType
-  case object Type extends MacroType
-  final case class NamedType(name: String) extends MacroType
-  case object AST extends MacroType
-  case object Explain extends MacroType
 
   def t[A](value: A): A = macro typeMacro[A]
 
@@ -20,7 +15,7 @@ package object zen {
 
   def inspect[A](value: A): A = macro inspectMacro[A]
 
-  def unwrap[A](value: A): A = macro Unwrap.unwrapMacro[A]
+  def structure[A](value: A): A = macro Structure.structureMacro[A]
 
   def typeMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     val tree = c.typecheck(value.tree)
@@ -53,16 +48,5 @@ package object zen {
     astMacro[A](c)(value)
     typeMacro[A](c)(value)
     value
-  }
-
-  private def console(macroType: MacroType, value: String): Unit = {
-    val (prefix, colour) = macroType match {
-      case Type            => ("type", GREEN)
-      case NamedType(name) => (s"type $name", GREEN)
-      case AST             => ("ast", CYAN)
-      case Explain         => ("code", YELLOW)
-    }
-
-    println(s"${colour}${prefix}${RESET}: ${value}")
   }
 }

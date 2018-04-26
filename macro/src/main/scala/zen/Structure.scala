@@ -1,14 +1,14 @@
 package zen
 
 import scala.reflect.macros.blackbox.Context
-import scala.language.experimental.macros
-// import scala.io.AnsiColor._
+import Console.{Structure => Struct}
+import Console.console
 
-object Unwrap {
+object Structure {
   final case class Field(name: String, typeName: String, nested: Option[CaseClass])
   final case class CaseClass(name: String, fields: Seq[Field])
 
-  def unwrapMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
+  def structureMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     import c.universe._
 
     def isCaseClass(tpe: Type): Boolean = tpe.typeSymbol.asClass.isCaseClass
@@ -35,8 +35,7 @@ object Unwrap {
       } else None
     }
 
-    val xyz = getCaseClassMethods(treeType)
-    xyz.foreach(cc => println(separateAndShow(cc)))
+    getCaseClassMethods(treeType).foreach(cc => console(Struct, separateAndShow(cc)))
 
     value
   }
