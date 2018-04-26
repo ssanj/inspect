@@ -40,4 +40,17 @@ object MacroRunner {
   }
 
   zen.inspect { Right(1) }
+
+  case class Age(value: Int)
+  case class Name(value: String)
+  case class Person(title: String, name: Name, age: Age, address: Address)
+  case class Address(street: Street)
+  case class No(value: Int)
+  case class StreetName(value: String)
+  case class Street(no: No, name: StreetName)
+  class Dog(name: String)
+
+  val p1 = Person("mr", Name("Bob"), Age(31), Address(Street(No(10), StreetName("Midtown"))))
+
+  zen.unwrap(p1)
 }

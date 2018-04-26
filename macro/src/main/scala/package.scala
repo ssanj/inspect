@@ -20,6 +20,8 @@ package object zen {
 
   def inspect[A](value: A): A = macro inspectMacro[A]
 
+  def unwrap[A](value: A): A = macro Unwrap.unwrapMacro[A]
+
   def typeMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     val tree = c.typecheck(value.tree)
     console(Type, tree.tpe.toString )
@@ -28,7 +30,7 @@ package object zen {
 
   def namedTypeMacro[A: c.WeakTypeTag](c: Context)(name: c.Expr[String], value: c.Expr[A]): c.Expr[A] = {
     val tree = c.typecheck(value.tree)
-    console(NamedType(name.tree.toString), tree.tpe.toString )
+    console(NamedType(name.tree.toString), tree.tpe.toString)
     value
   }
 
