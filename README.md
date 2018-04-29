@@ -6,7 +6,7 @@ Zen is inspired by [macrocosm](https://github.com/retronym/macrocosm) and [Blake
 
 ## Showing the type of an Expression
 
-```{.scala}
+```scala
 zen.t { List(1,2,3,4).map(_.toString).mkString }
 ```
 
@@ -18,7 +18,7 @@ type: String
 
 You can also name a given type:
 
-```{.scala}
+```scala
 zen.t("pair", { 1 -> "one" } )
 ```
 
@@ -31,7 +31,7 @@ type "pair": (Int, String)
 
 ## Explaining (desugaring) an Expression
 
-```{.scala}
+```scala
 z.explain {
     Option(1) match {
         case Some(x) => true
@@ -51,7 +51,7 @@ code: scala.Option.apply[Int](1) match {
 
 ## Showing the AST for an Expression
 
-```{.scala}
+```scala
 zen.ast { 1 :: 2 :: 3 :: Nil }
 ```
 
@@ -63,7 +63,7 @@ ast: Apply(TypeApply(Select(Apply(Apply(TypeApply(Select(Apply(TypeApply(Select(
 
 ## Showing Everything (Type, Explain and AST)
 
-```{.scala}
+```scala
 val source = zen.inspect(Observable.interval(1.second)
   .filter(_ % 2 == 0)
   .flatMap(x => Observable(x, x)))
@@ -80,7 +80,7 @@ type: monix.reactive.Observable[Long]
 
 ## Showing the structure of a Case Class
 
-```{.scala}
+```scala
 case class Age(value: Int)
 case class Name(value: String)
 case class Person(title: String, name: Name, age: Age, address: Address)
@@ -113,7 +113,7 @@ StreetName(value:String)
 
 Add the following to your `build.sbt`:
 
-```{.scala}
+```scala
 libraryDependencies += "net.ssanj" %% "zen" % "2.0.0"
 ```
 
@@ -122,13 +122,13 @@ libraryDependencies += "net.ssanj" %% "zen" % "2.0.0"
 
 Clone this repo and install it locally with:
 
-```{.scala}
+```scala
 sbt publishLocal
 ```
 
 You can then include it in any SBT project as per usual:
 
-```{.scala}
+```scala
 libraryDependencies += "net.ssanj" %% "zen" % "2.2.0"
 ```
 
