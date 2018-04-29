@@ -129,7 +129,7 @@ sbt publishLocal
 You can then include it in any SBT project as per usual:
 
 ```{.scala}
-libraryDependencies += "net.ssanj" %% "zen" % "2.0.0"
+libraryDependencies += "net.ssanj" %% "zen" % "2.2.0"
 ```
 
 ## Publishing
