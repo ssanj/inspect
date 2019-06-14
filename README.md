@@ -1,3 +1,5 @@
+ [ ![Download](https://api.bintray.com/packages/ssanj/maven/zen/images/download.svg) ](https://bintray.com/ssanj/maven/zen/_latestVersion)
+
 ![The master computer from the Liberator](/zen.jpg)
 
 Zen is a Scala Macro that provides some additional type information when you need it.
@@ -129,7 +131,7 @@ sbt publishLocal
 You can then include it in any SBT project as per usual:
 
 ```scala
-libraryDependencies += "net.ssanj" %% "zen" % "2.2.0"
+libraryDependencies += "net.ssanj" %% "zen" % "3.0.0"
 ```
 
 ## Publishing
