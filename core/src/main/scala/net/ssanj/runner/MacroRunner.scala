@@ -1,23 +1,10 @@
 package net.ssanj.runner
 
-import monix.execution.Scheduler.Implicits.global
-import monix.reactive._
-import concurrent.duration._
-
 object MacroRunner {
   def main(args: Array[String]): Unit = {
     zen.t(List(1,2,3,4))
     zen.t(List(1,2,3,4).map(_.toString).mkString)
     zen.t("pair", { 1 -> "one" })
-
-    val source = zen.inspect(Observable.interval(1.second)
-      .filter(_ % 2 == 0)
-      .flatMap(x => Observable(x, x)))
-      . take(10)
-
-    val cancelable = zen.ast(source
-      .dump("O"))
-      .subscribe()
 
     val x =
       zen.explain(for {
@@ -32,11 +19,6 @@ object MacroRunner {
         case None => false
       }
     }
-
-    zen.explain(Observable.range(0, 4).dump("O")
-      .consumeWith(Consumer.complete)
-      .runAsync
-      .foreach(x => { zen.t("x", x); println("Consumer completed") }))
   }
 
   zen.inspect { Right(1) }
@@ -52,5 +34,6 @@ object MacroRunner {
 
   val p1 = Person("mr", Name("Bob"), Age(31), Address(Street(No(10), StreetName("Midtown"))))
 
-  zen.structure(p1)
+  val _ = zen.structure(p1)
+  ()
 }

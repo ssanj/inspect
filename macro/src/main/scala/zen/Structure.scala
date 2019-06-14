@@ -1,7 +1,6 @@
 package zen
 
 import scala.reflect.macros.blackbox.Context
-import Console.{Structure => Struct}
 import Console.console
 
 object Structure {
@@ -35,7 +34,7 @@ object Structure {
       } else None
     }
 
-    getCaseClassMethods(treeType).foreach(cc => console(Struct, separateAndShow(cc)))
+    getCaseClassMethods(treeType).foreach(cc => console(Console.Structure, separateAndShow(cc)))
 
     value
   }

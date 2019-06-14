@@ -1,6 +1,6 @@
 import scala.reflect.macros.blackbox.Context
 import scala.language.experimental.macros
-import zen.Console._
+import zen.Console.console
 
 package object zen {
 
@@ -18,27 +18,27 @@ package object zen {
 
   def typeMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     val tree = c.typecheck(value.tree)
-    console(Type, tree.tpe.toString )
+    console(Console.Type, tree.tpe.toString )
     value
   }
 
   def namedTypeMacro[A: c.WeakTypeTag](c: Context)(name: c.Expr[String], value: c.Expr[A]): c.Expr[A] = {
     val tree = c.typecheck(value.tree)
-    console(NamedType(name.tree.toString), tree.tpe.toString)
+    console(Console.NamedType(name.tree.toString), tree.tpe.toString)
     value
   }
 
   def explainMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     import c.universe._
 
-    console(Explain, showCode(value.tree))
+    console(Console.Explain, showCode(value.tree))
     value
   }
 
   def astMacro[A: c.WeakTypeTag](c: Context)(value: c.Expr[A]): c.Expr[A] = {
     import c.universe._
 
-      console(AST, showRaw(value.tree))
+      console(Console.AST, showRaw(value.tree))
     value
   }
 
